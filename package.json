@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/oscarlappay/-incode6-git-project3#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
