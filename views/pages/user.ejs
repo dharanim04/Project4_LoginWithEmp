@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Individual User</title>
+   <link rel="stylesheet " href ="/style.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <main>
+    <h3>User: <%= users[id].firstname %> <%= users[id].lastname %> </h3>
+    <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%= users[id].firstname %></td>
+              <td><%= users[id].lastname %></td>
+              <td><%= users[id].email %></td>
+              <td><%= users[id].password %></td>
+            </tr>
+        </tbody>
+      </table>
+
+  </main>
+        
+</body>
+
+</html> 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Day</th>
+          <th>Start at</th>
+          <th>End at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i = 0; i < schedules.length; i++) { %>
+          <tr>
+            <td><%= schedules[i].user_id %></td>
+            <% for (let j = 0; j < days.length+1; j++) { %>
+              <% if((schedules[i].day)==j) {%>
+            <td><%= days[j-1] %></td>
+            <% } %>
+            <% } %>
+            <td><%= schedules[i].start_at %></td>
+            <td><%= schedules[i].end_at %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <a href = "/schedules/new">New Schedule</a>
+  </main>
+</body>
+</html>
