@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="fcontainter">
+  <form method="POST" action="/users/register">
+    <div>
+      <label for="firsname">First Name:</label>
+      <input id="firsname" type="text" name="firsname" required>
+    </div><div>
+      <label for="lastname">Last Name:</label>
+      <input id="lastname" type="text" name="lastname" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" type="email" name="email" required>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" type="password" name="password" required>
+    </div>
+
+    <div>
+      <label for="confirmPassword">Confirm Password:</label>
+      <input id="confirmPassword" type="password" name="confirmPassword" required>
+    </div>
+
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
+</body>
+</html>

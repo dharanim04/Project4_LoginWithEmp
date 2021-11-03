@@ -98,6 +98,12 @@ app.get('/userschedule/new', (req, res) => {
   res.render('pages/new-userschedule')
 })
 
+
+//get user register
+app.get('/users/register', (req, res) => {
+  res.render('pages/register')
+})
+
 // Get individual user
 app.get('/users/:id', (req, res) => {
   db.any('SELECT * FROM users WHERE id = $1', [Number(req.params.id)+1])
