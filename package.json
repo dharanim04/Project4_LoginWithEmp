@@ -1,24 +1,29 @@
 {
-  "name": "project3",
+  "name": "project4_loginwithemp",
   "version": "1.0.0",
   "description": "Mr Coffee scheduling web app.",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "create_db": "psql -U postgres -f sql/create_db.sql",
+    "create_tables": "psql -U postgres -d mrcoffee_db -f sql/create_table.sql",
+    "seed_tables": "psql -U postgres -d mrcoffee_db -f sql/seed_table.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oscarlappay/-incode6-git-project3.git"
+    "url": "git+https://github.com/dharanim04/Project4_LoginWithEmp.git"
   },
-  "author": "Oscar Lappay",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/oscarlappay/-incode6-git-project3/issues"
-  },
-  "homepage": "https://github.com/oscarlappay/-incode6-git-project3#readme",
+  "homepage": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "express": "^4.17.1"
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg-promise": "^10.11.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
