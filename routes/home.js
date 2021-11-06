@@ -48,7 +48,7 @@ route.get("/getJson", (req, res, next) => {
   }
 });
 // Welcome
-route.get("/", (req, res) => {
+route.get("/all", (req, res) => {
   db.task("get-everything", async (t) => {
     const usersAll = await t.any("select * from users;");
     const users = await t.any("select * from users;");
