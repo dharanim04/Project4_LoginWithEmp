@@ -9,24 +9,10 @@
   </head>
   <body>
     <%- include('../partials/header') %>
-
     <main>
       <br />
       <h1>Welcome to Schedule App</h1>
-      <section>
-        <!-- filter section -->
-
-        <form id="tableForm" method="GET" action="/getJson">
-          <label name="Select User">Select User</label>
-          <select class="selectpicker" data-style="btn-info" name="selectpicker">
-                <option name="table1" value="0">Select All</option>
-                <% for (let i = 0; i < usersAll.length; i++) { %>
-                  <option name="table1" value="<%= usersAll[i].id %>"><%= usersAll[i].firstname %></option>
-                  <% } %>
-          </select>
-          <input type="submit" />
-      </form>
-      </section>
+     <h3>User Details</h3>
       <section>
         <!-- user -->
         <table>
@@ -50,6 +36,7 @@
           </tbody>
         </table>
       </section>
+      <h3>User schedules</h3>
       <section>
      <!-- schedules -->
 
