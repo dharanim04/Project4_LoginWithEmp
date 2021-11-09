@@ -42,7 +42,7 @@ app.use("/users", usersRoute);
 app.use("/schedules", scheduleRoute);
 app.use("/", registerRoute);
 app.use("/logout", logoutRouter);
-app.use("/all", homeroute);
+app.use("/home", homeroute);
 
 app.listen(PORT, () => {
   console.log(`App is listening at http://localhost:${PORT}`);

@@ -53,7 +53,16 @@ usersRoute.get("/userDetails", (req, res) => {
     db.task("get-filtervalues", async (t) => {
       const users = await t.any("select * from users where id=$1;", [userID]);
       const schedules = await t.any(
-        "SELECT (firstname || ' ' ||lastname)username,day,start_time,end_time FROM schedules LEFT JOIN users on schedules.user_id=users.id where schedules.user_id=$1 ORDER BY username;",
+        "SELECT (firstname || ' ' ||lastname)username, Case day " +
+          "When 1 then 'Monday' " +
+          "When 2 then 'Tuesday' " +
+          "When 3 then 'Wednesday' " +
+          "When 4 then 'Thursday' " +
+          "When 5 then 'Friday' " +
+          "When 6 then 'Saturday' " +
+          "When 7 then 'Sunday'" +
+          "else 'Days' " +
+          "end as day,start_time,end_time FROM schedules LEFT JOIN users on schedules.user_id=users.id where schedules.user_id=$1 ORDER BY username;",
         [userID]
       );
       return { users, schedules };

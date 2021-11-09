@@ -6,7 +6,8 @@ const db = require("../database");
 // Get all schedules
 scheduleRoute.get("/", (req, res) => {
   db.any(
-    "SELECT (firstname || ' ' ||lastname)username,day,start_time,end_time FROM schedules LEFT JOIN users on schedules.user_id=users.id ORDER BY username;"
+    "SELECT (firstname || ' ' ||lastname)username,day,start_time,end_time FROM schedules " +
+      "LEFT JOIN users on schedules.user_id=users.id ORDER BY username;"
   )
     .then((schedules) => {
       console.log(schedules);
@@ -39,13 +40,13 @@ scheduleRoute.post("/", (req, res) => {
   // add schedule of logged user
   //Todo: validate schedules
 
-  const { selectDay, start_at, end_at } = req.body;
+  const { selectDay, start_time, end_time } = req.body;
   console.log(req.body);
   const userID = req.session.userId;
   if (userID != null) {
     db.none(
       "INSERT INTO schedules(user_id, day, start_time, end_time) VALUES ($1, $2, $3, $4);",
-      [userID, selectDay, start_at, end_at]
+      [userID, selectDay, start_time, end_time]
     )
       .then(() => {
         res.redirect("/users/userDetails");

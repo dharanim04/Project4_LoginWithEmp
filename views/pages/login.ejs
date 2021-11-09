@@ -5,20 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="/materialize.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/jquery.min.js"></script>
   </head>
   <body>
-    <form method="post" action="/users/login">
-      <div>
-        <label for="email">Email:</label>
-        <input id="email" type="email" name="email" required />
-      </div>
+    <nav>
+      <div class="nav-wrapper blue lighten-1">
+        <a href="#" class="Mrlogo left"> </a>
 
-      <div>
-        <label for="password">Password:</label>
-        <input id="password" type="password" name="password" required />
+        <a href="#" class="brand-logo center">Schedule App</a>
+        <!-- <a href="#" data-activates="mobile-demo" class="button-collapse"
+          ><i class="material-icons">menu</i></a
+        > -->
+        <!-- hide-on-med-and-down -->
+        <ul class="right" id="nav-mobile">
+          <li><a href="#">Home</a></li>
+          <li><a href="/users/login">Login</a></li>
+          <li><a href="/">Register</a></li>
+        </ul>
+        <!-- <ul class="side-nav" id="mobile-demo">
+          <li><a href="#">Home</a></li>
+          <li><a href="/users/login">Login</a></li>
+          <li><a href="/">Register</a></li>
+        </ul> -->
       </div>
+    </nav>
+    <div class="row" style="margin: 2em">
+      <div class="col s8"></div>
+      <form method="post" action="/users/login" class="col s4">
+        <div class="row">
+          <div class="input-field">
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password" required />
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect light-blue" type="submit">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
 
-      <button type="submit">Login</button>
-    </form>
+    <!-- end of the body include js  -->
+    <!-- Compiled and minified JavaScript -->
+    <script src="/materialize.min.js"></script>
   </body>
 </html>

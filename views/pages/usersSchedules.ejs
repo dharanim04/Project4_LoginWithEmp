@@ -5,62 +5,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
     <title>Schedule website</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="/materialize.min.css" />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <%- include('../partials/header') %>
+    <nav>
+      <div class="nav-wrapper blue lighten-1">
+        <a href="#" class="Mrlogo left"> </a>
+        <a href="#" class="brand-logo center">Schedule App</a>
+
+        <!-- hide-on-med-and-down -->
+        <ul class="right hide-on-med-and-down" id="nav-mobile">
+          <!-- <li><a href="#">Home</a></li> -->
+          <li><a href="/schedules/new">Add Schedule</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
     <main>
       <br />
-      <h1>Welcome to Schedule App</h1>
-     <h3>User Details</h3>
-      <section>
+      <h4 class="left-align">Welcome to Schedule App</h4>
+      <br />
+
+      <section class="container">
         <!-- user -->
-        <table>
+        <h5>User Details</h5>
+        <table class="striped">
           <thead>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Password</th>
-            </tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
           </thead>
           <tbody>
-            <% 
-            for (let i = 0; i < users.length; i++) { %>
-              <tr>
-                <td><%= users[i].firstname %></td>
-                <td><%= users[i].lastname %></td>
-                <td><%= users[i].email %></td>
-                <td><%= users[i].password %></td>
-              </tr>
+            <% for (let i = 0; i < users.length; i++) { %>
+            <tr>
+              <td><%= users[i].firstname %></td>
+              <td><%= users[i].lastname %></td>
+              <td><%= users[i].email %></td>
+              <!-- <td><%= users[i].password %></td> -->
+            </tr>
             <% } %>
           </tbody>
         </table>
       </section>
-      <h3>User schedules</h3>
-      <section>
-     <!-- schedules -->
+      <!-- schedules -->
+      <section class="container">
+        <h5>User schedules</h5>
 
-     <table>
-      <thead>
-        <tr>
-          <th>User</th>
-          <th>Day</th>
-          <th>Start at</th>
-          <th>End at</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for (let i = 0; i < schedules.length; i++) { %>
-        <tr>
-          <td><%= schedules[i].username %></td>
-          <td><%= schedules[i].day %></td>
-          <td><%= schedules[i].start_time %></td>
-          <td><%= schedules[i].end_time %></td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Day</th>
+              <th>Start at</th>
+              <th>End at</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < schedules.length; i++) { %>
+            <tr>
+              <td><%= schedules[i].username %></td>
+              <td><%= schedules[i].day %></td>
+              <td><%= schedules[i].start_time %></td>
+              <td><%= schedules[i].end_time %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
       </section>
     </main>
+    <!-- end of the body include js  -->
+    <!-- Compiled and minified JavaScript -->
+    <script src="/materialize.min.js"></script>
+    <script src="/jquery.min.js"></script>
   </body>
 </html>
