@@ -1,43 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Schedule</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <%- include('../partials/header') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Schedule</title>
 
-  <main>
-    <form method="POST" action="/schedules">
-      <div>
-        <label for="userid">User ID</label>
-        <input id="user_id" type="number" name="user_id" required>
+    <%- include('../partials/linkCss') %>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const elems = document.querySelectorAll("select");
+        const options = { classes: "" };
+        const instances = M.FormSelect.init(elems, options);
+      });
+    </script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper blue lighten-1">
+        <a href="#" class="Mrlogo left"> </a>
+        <a href="#" class="brand-logo center">Schedule App</a>
+        <!-- <a href="#" data-activates="mobile-demo" class="button-collapse"
+          ><i class="material-icons">menu</i></a
+        > -->
+        <!-- hide-on-med-and-down -->
+        <ul class="right hide-on-med-and-down" id="nav-mobile">
+          <li><a href="/users/userDetails">Home</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+        <!-- <ul class="side-nav" id="mobile-demo">
+          <li><a href="#">Home</a></li>
+          <li><a href="/users/login">Login</a></li>
+          <li><a href="/">Register</a></li>
+        </ul> -->
       </div>
+    </nav>
+    <main>
+      <div class="row" style="margin: 2em">
+        <div class="col s4"></div>
+        <form method="POST" action="/schedules" class="col s4">
+          <div class="input-field col s12">
+            <select id="selectDay" name="selectDay">
+              <option value="1">Monday</option>
+              <option value="2">Tuesday</option>
+              <option value="3">Wednesday</option>
+              <option value="4">Thursday</option>
+              <option value="5">Friday</option>
+              <option value="6">Saturday</option>
+              <option value="7">Sunday</option>
+            </select>
+            <label for="selectDay">Select Day</label>
+          </div>
 
-      <div>
-        <label for="day">Day</label>
-        <input id="day" type="number" name="day" min=1 max=7 required>
+          <div>
+            <label for="start_time">Start at</label>
+            <input id="start_time" type="time" name="start_time" required />
+          </div>
+
+          <div>
+            <label for="end_time">End at</label>
+            <input id="end_time" type="time" name="end_time" required />
+          </div>
+
+          <button class="btn waves-effect light-blue" type="submit">
+            Add new schedule
+          </button>
+        </form>
       </div>
+    </main>
 
-      <div>
-        <label for="startat">Start at</label>
-        <input id="start_at" type="time" name="start_at" required>
-      </div>
+    <!-- include footer -->
+    <!-- end of the body include js  -->
 
-      <div>
-        <label for="endat">End at</label>
-        <input id="end_at" type="time" name="end_at" required>
-      </div>
-
-      <button type="submit">Add new schedule</button>
-    </form>
-  </main>
-
-  <!-- include footer -->
-
-</body>
-</html> 
+    <!-- <script
+      type="text/javascript"
+      language="JavaScript"
+      src="/materialize.min.js"
+    ></script> -->
+    <%- include('../partials/linkJS') %>
+  </body>
+</html>
