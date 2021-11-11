@@ -2,6 +2,24 @@
 const express = require("express");
 const route = express.Router();
 const db = require("../database");
+const bcrypt = require("bcryptjs");
+const { redirectToHome } = require("../middleware/redirect");
+
+const { emailRegex, passwordRegex } = require("../middleware/validations");
+
+const isValid = (value, regex) => {
+  return regex.test(value);
+};
+const cleanEmail = (email) => {
+  return email ? email.toLowerCase().trim() : "";
+};
+
+// route.get("/login", redirectToHome, (req, res) => {
+//   console.log(req.session);
+//   console.log(req.flash("success"));
+//   console.log(req.session.flash);
+//   res.render("pages/register");
+// });
 
 route.get("/getJson", (req, res, next) => {
   console.log("in request");
@@ -61,6 +79,13 @@ route.get("/getJson", (req, res, next) => {
 
 // Welcome
 route.get("/all", (req, res) => {
+  console.log("in Home all");
+  if (req.session.userId == null) {
+    res.redirect("/");
+  }
+  const userID = req.session.userId;
+  console.log(userID);
+  console.log(req.session);
   db.task("get-everything", async (t) => {
     const usersAll = await t.any("select * from users;");
     const users = await t.any("select * from users;");
@@ -93,5 +118,41 @@ route.get("/all", (req, res) => {
       res.send(err.message);
     });
 });
+// login a user
+route.post("/login", redirectToHome, (req, res) => {
+  const { email, password } = req.body;
+  const cleanedEmail = cleanEmail(email);
 
+  // 1. validate
+  if (!email || !password)
+    return res.send("Please enter both email and password");
+  if (!isValid(cleanedEmail, emailRegex)) return res.send("Email is not valid");
+  if (!isValid(password, passwordRegex))
+    return res.send("Password is not valid");
+
+  // 2. does user exist?
+  db.oneOrNone("SELECT * FROM users WHERE email = $1;", [cleanedEmail])
+    .then((user) => {
+      if (!user) return res.send("Credentials are not correct");
+
+      // 3. if so, is password correct?
+      const checkPassword = bcrypt.compareSync(password, user.password);
+      if (!checkPassword) return res.send("Credentials are not correct");
+
+      // 4. user is valid!!! do something to track them
+      // >>>>>>>>>>>>>>>>>>>
+      req.session.userId = user.id;
+      console.log(req.session);
+
+      // display user information with schedule
+      res.redirect("/home/all");
+
+      // User ID can be accessed on any route via req.session.userId
+    })
+    .catch((err) => {
+      // error checking db for existing email
+      console.log(err);
+      res.send(err.message);
+    });
+});
 module.exports = route;

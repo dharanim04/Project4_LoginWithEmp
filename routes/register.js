@@ -58,7 +58,7 @@ registerRoute.post("/", (req, res) => {
         .then(() => {
           req.flash("success", "User successfully created, please login.");
           req.flash("success", "Good job!");
-          res.redirect("/users/login");
+          res.redirect("/");
           // TODO: add success message
         })
         .catch((err) => {

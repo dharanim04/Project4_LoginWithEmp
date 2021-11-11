@@ -10,8 +10,7 @@ router.get("/", redirectToLogin, (req, res) => {
     } else {
       console.log(req.session);
       res.clearCookie("mrcoffee_sid");
-
-      res.redirect("/users/login");
+      res.redirect("/");
     }
   });
 });

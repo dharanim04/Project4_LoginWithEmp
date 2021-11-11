@@ -26,7 +26,7 @@
         > -->
         <!-- hide-on-med-and-down -->
         <ul class="right hide-on-med-and-down" id="nav-mobile">
-          <li><a href="/users/userDetails">Home</a></li>
+          <li><a href="/home/all">Home</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
         <!-- <ul class="side-nav" id="mobile-demo">
@@ -37,6 +37,36 @@
       </div>
     </nav>
     <main>
+      <div class="row" style="margin: 2em">
+        <div class="col s4"></div>
+        <div class="col s4">
+          <table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Day</th>
+                <th>Start at</th>
+                <th>End at</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (let i = 0; i < schedules.length; i++) { %>
+              <tr>
+                <td><%= schedules[i].username %></td>
+                <td><%= schedules[i].day %></td>
+                <td><%= schedules[i].start_time %></td>
+                <td><%= schedules[i].end_time %></td>
+                <td>
+                  <a href="delete/<%=schedules[i].sid %>" method="post"
+                    >delete</a
+                  >
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="row" style="margin: 2em">
         <div class="col s4"></div>
         <form method="POST" action="/schedules" class="col s4">

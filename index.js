@@ -9,7 +9,7 @@ const morgan = require("morgan");
 //app define before router
 const app = express();
 const homeroute = require("./routes/home");
-const usersRoute = require("./routes/users");
+// const usersRoute = require("./routes/users");
 const scheduleRoute = require("./routes/schedules");
 const registerRoute = require("./routes/register");
 const logoutRouter = require("./routes/logout");
@@ -38,11 +38,11 @@ app.use(
 
 app.use(flash());
 // ROUTES
-app.use("/users", usersRoute);
-app.use("/schedules", scheduleRoute);
-app.use("/", registerRoute);
-app.use("/logout", logoutRouter);
+// app.use("/users", usersRoute);
 app.use("/home", homeroute);
+app.use("/schedules", scheduleRoute);
+app.use("/logout", logoutRouter);
+app.use("/", registerRoute);
 
 app.listen(PORT, () => {
   console.log(`App is listening at http://localhost:${PORT}`);

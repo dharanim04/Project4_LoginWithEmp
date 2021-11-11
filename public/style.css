@@ -22,11 +22,11 @@ input {
 label {
   text-align: left;
 }
-footer {
+/* footer {
   background-color: lightslategray;
   height: 200px;
   width: 100%;
-}
+} */
 .wlogof {
   height: 200px;
   width: 200px;
@@ -76,3 +76,10 @@ th {
   display: inline-block;
   position: relative;
 } */
+.footer-copyright1 {
+  height: 50px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
