@@ -30,7 +30,7 @@ route.get("/getJson", (req, res, next) => {
   } else {
     next("/");
   }
-
+  const LoggedinUser = req.session.username;
   if (req.query != null && Number(userID) > 0) {
     // console.log(userID);
     //filter values
@@ -51,15 +51,16 @@ route.get("/getJson", (req, res, next) => {
           "end as day,start_time,end_time FROM schedules LEFT JOIN users on schedules.user_id=users.id where schedules.user_id=$1 ORDER BY username;",
         [userID]
       );
-      return { usersAll, users, schedules };
+      return { usersAll, users, schedules, LoggedinUser };
     })
-      .then(({ usersAll, users, schedules }) => {
+      .then(({ usersAll, users, schedules, LoggedinUser }) => {
         // console.log("in then");
         // console.log(users);
         res.render("pages/home", {
           usersAll,
           users,
           schedules,
+          LoggedinUser,
           message: req.query.message,
         });
       })
@@ -86,6 +87,7 @@ route.get("/all", (req, res) => {
   const userID = req.session.userId;
   console.log(userID);
   console.log(req.session);
+  const LoggedinUser = req.session.username;
   db.task("get-everything", async (t) => {
     const usersAll = await t.any("select * from users;");
     const users = await t.any("select * from users;");
@@ -101,15 +103,16 @@ route.get("/all", (req, res) => {
         "else 'Days' " +
         "end as day,start_time,end_time FROM schedules LEFT JOIN users on schedules.user_id=users.id ORDER BY username;"
     );
-    return { usersAll, users, schedules };
+    return { usersAll, users, schedules, LoggedinUser };
   })
-    .then(({ usersAll, users, schedules }) => {
+    .then(({ usersAll, users, schedules, LoggedinUser }) => {
       // console.log("in then");
       // console.log(users);
       res.render("pages/home", {
         usersAll,
         users,
         schedules,
+        LoggedinUser,
         message: req.query.message,
       });
     })
@@ -142,6 +145,8 @@ route.post("/login", redirectToHome, (req, res) => {
       // 4. user is valid!!! do something to track them
       // >>>>>>>>>>>>>>>>>>>
       req.session.userId = user.id;
+      req.session.username = user.firstname;
+
       console.log(req.session);
 
       // display user information with schedule
